@@ -17,7 +17,7 @@ const renderCards = (array) => {
 }
 
 // UPDATE/ADD ITEMS TO CART
-// .split() is an array method that turns a string into an array of values. The array here will be: index 0 will be fav-btn and index 1 will be the ID number.
+// .split() is an array method that turns a string into an array of values. The array here will be: index 0 will be fav-btn and index 1 will be the ID number. With destructuring, we know that .split() is going to return an array, so we need to give name of the second variable, "id" on line 24. 
 // .findIndex() & (.includes() - string method)
 const toggleCart = (event) => {
   if (event.target.id.includes("fav-btn")) {
@@ -25,9 +25,11 @@ const toggleCart = (event) => {
     // console.log(id);
   //  console.log('Clicked Fav btn')
 
-  const index = referenceList.findIndex(item => item.id === Number(id)) // Number converts the string into a number in this example.
+  const index = referenceList.findIndex(item => item.id === Number(id)) // Number converts the string into a number in this example because the data type for id in the button is a string, but the data type in our object is a number, so that is why we have to do conversion.
 
-  console.log(referenceList[index]);
+  referenceList[index].inCart = !referenceList[index].inCart // Reassigned it. 
+  cartTotal();
+  renderCards(referenceList);
   }
 }
 
